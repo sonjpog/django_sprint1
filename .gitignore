@@ -147,6 +147,10 @@ dmypy.json
 
 # папки со статикой и медиа
 media/
+static_dev/
+
+# html исходный
+html/
 
 # Testing
 build_tests/
