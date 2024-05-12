@@ -1,8 +1,11 @@
 from django.shortcuts import render
-
 from django.http import Http404
 
-posts = [
+from typing import List, Dict, Any
+
+PostType = Dict[str, Any]
+
+posts: List[PostType] = [
     {
         'id': 0,
         'location': 'Остров отчаянья',
@@ -45,14 +48,12 @@ posts = [
     },
 ]
 
-# Делаю проект после того, как начиталась вопросов от других
-# студентов после ревью, поэтому сразу отрабатываю id постов и Http404.
 posts_by_id = {post['id']: post for post in posts}
 
 
 def index(request):
     template = 'blog/index.html'
-    context = {'posts': posts_by_id.values()}
+    context = {'posts': posts}
     return render(request, template, context)
 
 
@@ -60,7 +61,7 @@ def post_detail(request, post_id):
     try:
         post = posts_by_id[post_id]
     except KeyError:
-        raise Http404('Такого поста нет :(')
+        raise Http404(f'Поста {post_id} не cуществует :(')
 
     template = 'blog/detail.html'
     context = {'post': post}
