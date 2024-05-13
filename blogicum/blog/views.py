@@ -1,7 +1,7 @@
+from typing import List, Dict, Any
+
 from django.shortcuts import render
 from django.http import Http404
-
-from typing import List, Dict, Any
 
 PostType = Dict[str, Any]
 
